@@ -1,0 +1,1076 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .container1 {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;     
+            align-items: center; 
+            background-color: #a3cef1;
+            padding: 20px;
+            color: #fcf8f3;
+            width: 100%;
+            box-sizing: border-box;
+            position: relative; 
+            
+        }
+        .logo {
+        
+            width: 70px; 
+            
+            position: absolute; 
+            left: 1%;
+            transform: translateX(-50%)
+            aspect-ratio: 3/2;
+            object-fit: contain;
+            mix-blend-mode: color-burn;
+        }
+
+        .text{
+            color: #27296d;
+             margin-left: 60px; 
+             margin-bottom: -7vh;
+             font-size: 1.2em;
+        }
+
+        @media (max-width: 600px) {
+    .logo {
+        max-width: 80px;
+        }
+    .text{
+        margin-left: 50px;
+    }
+}
+
+
+
+        .search-container {
+            display: flex;
+            align-items: center; 
+            gap: 10px; /* Space between the input and icon */
+            background-color: #333; /* Dark background for the search box */
+            border-radius: 20px; /* Rounded corners */
+            padding: 5px;
+            transition: width 0.3s ease, padding 0.3s ease; /* Smooth transition for resizing */
+            width: 150px; /* Default width of the search box */
+            position: relative; /* Needed for positioning the search icon */
+        }
+        .search-container.expanded {
+            width: 300px; /* Width when expanded */
+            padding: 5px 10px; /* Adjust padding when expanded */
+        }
+        .search-container input[type="text"] {
+            border: none;
+            background: none;
+            color: antiquewhite;
+            padding: 5px;
+            outline: none;
+            flex: 1; /* Takes up remaining space */
+            border-radius: 15px; /* Rounded corners inside the input field */
+            transition: all 0.3s ease; /* Smooth transition for resizing */
+        }
+        .search-container input[type="text"]:focus {
+            border-radius: 15px; /* Maintain rounded corners on focus */
+        }
+        .search-container i {
+            color: antiquewhite;
+            cursor: pointer; 
+            position: absolute; 
+            right: 10px; 
+        }
+        .search-container i:hover {
+            color: #ccc; /* Light color on hover */
+        }
+        .right-items {
+            display: flex;
+            gap: 15px;
+            align-items: center; 
+        }
+
+      
+        .navbar {
+            display: flex;
+            justify-content: center;
+            background-color: rgba(202, 240, 248, 0.9);
+            padding: 10px;
+            position: relative;
+            z-index: 10;
+            
+            
+        }
+
+        .navbar ul li a{
+            color: #5603ad;
+
+        }
+        .navbar ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            gap: 10vw;
+            flex-wrap: wrap;
+        }
+        .navbar li {
+            position: relative;
+        }
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            padding: 10px;
+            display: block;
+            transition: background-color 0.3s;
+        }
+        .navbar a:hover {
+            background-color: #575757;
+        }
+
+        @media (max-width: 1200px) {
+    .navbar ul {
+        gap: 5vw; 
+    }
+    
+    .navbar a {
+        padding: 8px; 
+    }
+}
+
+@media (max-width: 600px) {
+    .navbar ul {
+        gap: 3vw; 
+    }
+    
+    .navbar a {
+        padding: 8px; 
+        font-size: 13px;
+    }
+}
+.dropdown {
+    position: relative; 
+}
+        .dropdown-content {
+            
+            display: none;
+            position: absolute;
+            background-color: #3294b9;
+            opacity: 90%;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            overflow: hidden;
+            width: 90vw; 
+            padding: 8px;
+            box-sizing: border-box;
+            right: -40vw;
+            top: 100%;
+            z-index: 20;
+           
+           
+        }
+        .dropdown-content img {
+            width: 15.42vw; 
+            height: 7.21vw;
+                       display: block;
+        }
+        .dropdown-content .logo-grid {
+            display: grid;
+             grid-template-columns: repeat(4, minmax(200px, 1fr));
+         
+        }
+        .dropdown-content a:hover {
+            background-color: #c0bebe;
+            width: 15.42vw;
+            height: 7.21vw;
+            left: 0;
+            text-align: center;
+        }
+        .dropdown:hover .dropdown-content {
+            display: block;
+            
+          
+        }
+        
+
+        .container {
+    display: flex;
+    height: 90vh; 
+    position: relative;
+    overflow: hidden; }
+
+
+.blurred-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover; /* This ensures the image covers the element */
+    background-position: center; 
+    z-index: 1;
+}
+
+
+video {
+    width: 95%;
+    height: auto; 
+    max-height: 80%; 
+    margin: auto; 
+    border-radius: 15px; 
+    object-fit: cover; /* Ensure the video covers its container */
+    filter: blur(0.5px);
+    filter: brightness(80%); 
+    animation: myAnim 3s ease 0s 1 normal forwards;
+    z-index: 5;
+}
+
+
+.content {
+    width: 45%; 
+    height: 100%;
+    padding: 20px; /* Add padding if needed */
+    color: white; 
+    display: flex;
+    flex-direction: column;
+    justify-content: center; 
+    overflow: hidden;
+    z-index: 5; 
+}
+
+
+.video-container {
+    display: flex;
+    align-items: center; /* Center video vertically */
+    justify-content: flex-end; /* Align video to the right */
+    width: 55%; 
+}
+
+
+
+@keyframes myAnim {
+	0% {
+		opacity: 0;
+		transform: translateX(50px);
+	}
+
+	100% {
+		opacity: 1;
+		transform: translateX(0);
+	}
+}
+
+
+
+.animate-text h1, .animate-text h2 {
+    position: relative;
+    opacity: 0; /* Start with text hidden */
+    transform: translateX(-100vw); /* Start from off-screen */
+    animation: slideIn 3s forwards; /* Apply animation */
+    margin: 0; /* Remove default margin */
+}
+
+.animate-text h1 {
+    animation-delay: 0.5s; /* Delay for first line */
+}
+
+.animate-text h2 {
+    animation-delay: 1.5s; /* Delay for second line */
+}
+
+/* Adjust spacing between lines */
+.animate-text h1 {
+    margin-bottom: 0.5rem; /* Adjust spacing between h1 and h2 */
+}
+
+.animate-text h2 {
+    margin-top: 0.25rem; /* Adjust spacing between h2 elements */
+}
+
+/* Adjust the keyframes if necessary */
+@keyframes slideIn {
+    to {
+        transform: translateX(0); /* Move to final position */
+        opacity: 1; /* Fade in */
+    }
+}
+
+@font-face {
+    font-family: 'LavoniaClassy';
+    src: url('font/Baby\ Girly.otf') format('opentype'), /* Pretty modern Browsers */
+         url('font/Baby\ Girly.ttf') format('truetype'); /* Safari, Android, iOS */
+    font-weight: normal; 
+    font-style: normal;
+}
+
+
+
+
+
+.custom-navbar {
+            display: flex;
+            justify-content: center;
+            background-color: rgba(202, 240, 248, 0.9);
+            padding: 10px;
+            z-index: 5;
+        }
+
+        .custom-navbar ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            gap: 20px;
+        }
+
+        .custom-navbar li {
+            position: relative;
+        }
+
+        .custom-navbar a {
+            color: #5603ad;
+            text-decoration: none;
+            padding: 10px;
+            display: block;
+            transition: background-color 0.3s;
+        }
+
+        .custom-navbar a:hover {
+            background-color: #575757;
+            color: white;
+        }
+
+        .image-dropdown {
+            display: none;
+            position: absolute;
+            background: hsla(190, 77%, 88%, 1);
+
+background: linear-gradient(90deg, hsla(190, 77%, 88%, 1) 0%, hsla(196, 57%, 46%, 1) 100%);
+
+background: -moz-linear-gradient(90deg, hsla(190, 77%, 88%, 1) 0%, hsla(196, 57%, 46%, 1) 100%);
+
+background: -webkit-linear-gradient(90deg, hsla(190, 77%, 88%, 1) 0%, hsla(196, 57%, 46%, 1) 100%);
+
+filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#CAF0F8", endColorstr="#3294B9", GradientType=1 );
+            box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+            z-index: 6;
+            padding: 20px; 
+            width: 32vw; 
+            left: -15vw;
+            top: 100%;
+            opacity: 0; 
+            transform: translateY(-10px); 
+            transition: opacity 0.3s ease, transform 0.3s ease; 
+            border-radius: 5px; 
+            display: grid; 
+            grid-template-columns: repeat(4, 1fr); 
+            gap: 10px; 
+        }
+
+        .custom-navbar li:hover .image-dropdown {
+            display: grid; 
+            opacity: 1; 
+            transform: translateY(0); 
+        }
+
+        .image-dropdown a {
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            text-decoration: none;
+        }
+
+        .image-dropdown img {
+            width: 80px; 
+            height: auto; 
+            border-radius: 5px; 
+            margin-bottom: 5px; 
+        }
+
+        .image-dropdown p {
+            text-align: center; 
+            margin: 0; 
+        }
+
+        @media (max-width: 600px) {
+            .custom-navbar ul {
+                flex-direction: column; 
+            }
+
+            .image-dropdown {
+                width: 100%;
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+
+
+        
+        .image-dropdownZ {
+            display: none;
+            position: absolute;
+            background: hsla(190, 77%, 88%, 1);
+
+background: linear-gradient(90deg, hsla(190, 77%, 88%, 1) 0%, hsla(196, 57%, 46%, 1) 100%);
+
+background: -moz-linear-gradient(90deg, hsla(190, 77%, 88%, 1) 0%, hsla(196, 57%, 46%, 1) 100%);
+
+background: -webkit-linear-gradient(90deg, hsla(190, 77%, 88%, 1) 0%, hsla(196, 57%, 46%, 1) 100%);
+
+filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#CAF0F8", endColorstr="#3294B9", GradientType=1 );;
+            box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+            z-index: 6;
+            padding: 20px; 
+            width: 42vw; 
+            left: -30vw;
+            top: 100%;
+            opacity: 0; 
+            transform: translateY(-10px);
+            transition: opacity 0.3s ease, transform 0.3s ease; 
+            border-radius: 5px;
+            display: grid; 
+            grid-template-columns: repeat(4, 1fr); 
+            gap: 10px; 
+        }
+
+        .custom-navbar li:hover .image-dropdownZ {
+            display: block; 
+            opacity: 1; 
+            transform: translateY(0); 
+        }
+
+        .image-dropdownZ a {
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            text-decoration: none;
+        }
+
+        .image-dropdownZ img {
+            width: 80px; 
+            height: auto; 
+            border-radius: 5px; 
+            margin-bottom: 5px; 
+        }
+
+        .image-dropdownZ p {
+            text-align: left    ; 
+            margin: 0; 
+        }
+
+        @media (max-width: 600px) {
+            .custom-navbar ul {
+                flex-direction: column; 
+            }
+
+            .image-dropdownZ {
+                width: 100%; 
+                grid-template-columns: repeat(2, 1fr); 
+            }
+        }
+        
+
+
+        .dropdown, .sort-dropdown {
+    position: relative; 
+}
+
+.sort-dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #3294b9;
+    opacity: 90%;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    padding: 8px;
+    box-sizing: border-box;
+    right: -40vw; 
+    top: 100%;
+    z-index: 20;
+}
+
+.dropdown-content, .sort-dropdown-content a {
+    display: block;
+    color: white;
+    padding: 5px 0;
+    text-decoration: none;
+}
+
+.dropdown:hover .dropdown-content,
+.sort-dropdown:hover .sort-dropdown-content {
+    display: block;
+}
+
+
+.containerAB {
+            padding: 20px;
+            flex: 1;
+        }
+        .filter-container {
+            background-color: #a3cef1;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+        }
+        .filter {
+            margin-bottom: 15px;
+        }
+        .filter label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        .filter select {
+            width: 100%;
+            padding: 8px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        .filter i {
+            margin-right: 8px;
+            color: #5603ad;
+        }
+        .button-container {
+            grid-column: span 3;
+            display: flex;
+            gap: 10px;
+        }
+        .book-button, .search-button {
+            background-color: #5603ad;
+            color: white;
+            padding: 8px 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .book-button:hover, .search-button:hover {
+            background-color: #7227b4;
+        }
+        .booking-page {
+            display: none;
+            padding: 20px;
+            border-radius: 10px;
+            background-color: #fff;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .related-pictures {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        .picture {
+            width: 30%;
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+        }
+        .picture img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        .cost-tag {
+            position: absolute;
+            top: 5px;
+            left: 5px;
+            background: rgba(255, 255, 255, 0.8);
+            padding: 5px;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+        .payment-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+        .payment-container {
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 20px;
+            width: 300px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+        .payment-container h2 {
+            margin: 0 0 15px;
+        }
+        .payment-container input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        .pay-button {
+            background-color: #5603ad;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            width: 100%;
+        }
+        .pay-button:hover {
+            background-color: #7227b4;
+        }
+
+        .containerCD {
+            max-width: 100VW;
+            margin: auto;
+            padding: 20px;
+            background: #afc6d7;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        h1, h2 {
+            color: #333;
+        }
+
+        .section {
+            margin-bottom: 15px;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            margin-top: 10px;
+        }
+
+        .social-icons a {
+            margin: 0 8px;
+        }
+
+        .social-icons img {
+            width: 25px;
+            height: 25px;
+        }
+
+
+    </style>
+</head>
+<body>
+    <div class="container1">
+        <div class="text" style=" ">Curious Traveler</div>
+        <img src="img/Automotive(1).png" alt="logo" class="logo">
+        <div class="right-items">
+            <div class="search-container" id="searchContainer">
+                <input type="text" placeholder="Search...">
+                <i class="fas fa-search"></i> <!-- Font Awesome search icon -->
+            </div>
+            <div class="login">Login</div>
+        </div>
+    </div>
+
+    <!-- Navbar -->
+    <div class="custom-navbar">
+        <ul>
+            <li>
+                <a href="#">Home</a>
+                
+            </li>
+            <li class="sort-dropdown">
+                <a href="#">Trip Catalog</a>
+                <div class="sort-dropdown-content">
+                    <a href="#">Sort by Country</a>
+                    <div class="dropdown-content">
+                        <a href="#">Turkey</a>
+                        <a href="#">Qatar</a>
+                        <a href="#">Dubai</a>
+                        <a href="#">India</a>
+                        <a href="#">China</a>
+                        <a href="#">Japan</a>
+                        <a href="#">Russia</a>
+                        <a href="#">France</a>
+                    </div>
+                    <a href="#">Sort by Activity</a>
+                    <div class="dropdown-content">
+                        <a href="#">Family Tour</a>
+                        <a href="#">Cultural Tour</a>
+                        <a href="#">Adventurous Tour</a>
+                        <a href="#">Luxury Tour</a>
+                    </div>
+                </div>
+            </li>
+            
+            <li>
+                <a href="#">Top Destinations</a>
+                <div class="image-dropdown">
+                    <a href="#">
+                        <img src="img/countries/chris-karidis-nnzkZNYWHaU-unsplash.jpg" alt="Image 1">
+                        <p>France</p>
+                    </a>
+                    <a href="#">
+                        <img src="img/countries/christoph-schulz-wJ6xyh1YMxU-unsplash.jpg" alt="Image 2">
+                        <p>Dubai</p>
+                    </a>
+                    <a href="#">
+                        <img src="img/countries/florian-wehde-Do6yoytec5E-unsplash.jpg" alt="Image 3">
+                        <p>Qatar</p>
+                    </a>
+                    <a href="#">
+                        <img src="img/countries/julian-yu-_WuPjE-MPHo-unsplash.jpg" alt="Image 4">
+                        <p>India</p>
+                    </a>
+                    <a href="#">
+                        <img src="img/countries/mar-cerdeira-bBF9e2UUh88-unsplash(1).jpg" alt="Image 5">
+                        <p>Turkey</p>
+                    </a>
+                    <a href="#">
+                        <img src="img/countries/jamie-street-zhiQORykuwQ-unsplash.jpg" alt="Image 6">
+                        <p>China</p>
+                    </a>
+                    <a href="#">
+                        <img src="img/countries/michael-parulava-L4jrg4c7928-unsplash.jpg" alt="Image 7">
+                        <p>Russia</p>
+                    </a>
+                    <a href="#">
+                        <img src="img/countries/su-san-lee-E_eWwM29wfU-unsplash.jpg" alt="Image 8">
+                        <p>Japan</p>
+                    </a>
+                </div>
+            </li>
+            <li class="dropdown"><a href="#">Contact Us</a> <div class="image-dropdownZ">
+                <h3>Contact Us   </h3>
+                <br>
+                
+                   <p style="text-align: left;"> We’d love to hear from you! Whether you have questions, feedback, or need assistance, our team is here to help.
+                    Get in Touch</p>
+                     <br><br>
+                       <p> Email: info@example.com <br>
+                        Phone: (123) 456-7890
+
+                        <br>Address: 123 Example Street, City, Country</p>
+                
+            </div></li>
+            <li><a href="#">About</a></li>
+        </ul>
+    </div>
+
+
+
+
+
+ <div class="container">
+        <img class="blurred-image" src="img1/yuriy-kovalev-nN1HSDtKdlw-unsplash.jpg" alt="Fog">
+        <div style="margin-left: 40px; margin-top: -50px; margin-bottom: -50px;" class="content animate-text" id="box">
+            <!-- Add your text or additional content here -->
+            <h1 style="font-family: LavoniaClassy, sans-serif; letter-spacing: 4px; font-size: 4.17vw;font-style: italic; color: black;">Explore the World’s </h1>
+            <h2 style="font-family: LavoniaClassy, sans-serif; letter-spacing: 4px;font-size: 4.17vw;font-style: italic;color: black;">Wonders</h2>
+            <h2 style="color: #cfcbcb;font-size: 1.55vw;">Discover the perfect destination for your next Adventure with our comprehensive  travel plane</h2>
+        </div>
+        <div class="video-container">
+            <video autoplay loop muted>
+                <source src="img1/2697636-uhd_1920_1440_30fps (online-video-cutter.com)(1).mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+        
+    </div>
+
+
+
+
+    <div class="containerAB"></div>
+        <div class="filter-container">
+            <h2 style="grid-column: span 3;">Plan Your Adventure</h2>
+            <div class="filter">
+                <label for="country"><i class="fas fa-globe"></i> Country</label>
+                <select id="country" onchange="updatePrices()">
+                    <option value="none">None</option>
+                    <option value="Qatar">Qatar</option>
+                    <option value="Russia">Russia</option>
+                    <option value="France">France</option>
+                    <option value="Dubai">Dubai</option>
+                    <option value="China">China</option>
+                    <option value="India">India</option>
+                    <option value="Japan">Japan</option>
+                    <option value="Turkey">Turkey</option>
+                </select>
+            </div>
+            <div class="filter">
+                <label for="travel-type"><i class="fas fa-plane"></i> Travel Type</label>
+                <select id="travel-type" onchange="updatePrices()">
+                    <option value="none">None</option>
+                    <option value="leisure">Leisure</option>
+                    <option value="business">Business</option>
+                    <option value="adventure">Adventure</option>
+                </select>
+            </div>
+            <div class="filter">
+                <label for="accommodation"><i class="fas fa-hotel"></i> Accommodation</label>
+                <select id="accommodation" onchange="updatePrices()">
+                    <option value="none">None</option>
+                    <option value="hotel">Hotel</option>
+                    <option value="hostel">Hostel</option>
+                    <option value="Airbnb">Airbnb</option>
+                </select>
+            </div>
+            <div class="filter">
+                <label for="activities"><i class="fas fa-camera"></i> Activities</label>
+                <select id="activities" onchange="updatePrices()">
+                    <option value="none">None</option>
+                    <option value="sightseeing">Sightseeing</option>
+                    <option value="hiking">Hiking</option>
+                    <option value="cultural">Cultural</option>
+                </select>
+            </div>
+            <div class="filter">
+                <label for="popularity"><i class="fas fa-star"></i> Popularity</label>
+                <select id="popularity" onchange="updatePrices()">
+                    <option value="none">None</option>
+                    <option value="high">High</option>
+                    <option value="medium">Medium</option>
+                    <option value="low">Low</option>
+                </select>
+            </div>
+            <div class="filter">
+                <label for="transportation"><i class="fas fa-car"></i> Transportation</label>
+                <select id="transportation" onchange="updatePrices()">
+                    <option value="none">None</option>
+                    <option value="car">Car</option>
+                    <option value="train">Train</option>
+                    <option value="plane">Plane</option>
+                </select>
+            </div>
+            <div class="filter">
+                <label for="rating"><i class="fas fa-star-half-alt"></i> Rating</label>
+                <select id="rating" onchange="updatePrices()">
+                    <option value="none">None</option>
+                    <option value="5">5 Stars</option>
+                    <option value="4">4 Stars</option>
+                    <option value="3">3 Stars</option>
+                </select>
+            </div>
+            <div class="filter">
+                <label for="duration"><i class="fas fa-clock"></i> Duration</label>
+                <select id="duration" onchange="updatePrices()">
+                    <option value="none">None</option>
+                    <option value="1week">1 Week</option>
+                    <option value="2weeks">2 Weeks</option>
+                    <option value="3weeks">3 Weeks</option>
+                </select>
+            </div>
+            <div class="filter">
+                <label for="season"><i class="fas fa-sun"></i> Season</label>
+                <select id="season" onchange="updatePrices()">
+                    <option value="none">None</option>
+                    <option value="summer">Summer</option>
+                    <option value="winter">Winter</option>
+                    <option value="spring">Spring</option>
+                    <option value="autumn">Autumn</option>
+                </select>
+            </div>
+            <div class="button-container">
+                <button class="search-button" onclick="showSearchResults()">Search</button>
+                <button class="book-button" onclick="showBookingPage()">Book</button>
+            </div>
+        </div>
+
+        <div class="booking-page" id="bookingPage">
+            <h2>Your Selected Trip</h2>
+            <div class="related-pictures">
+                <div class="picture">
+                    <img src="img/countries/christoph-schulz-wJ6xyh1YMxU-unsplash.jpg" alt="Destination 1">
+                    <div class="cost-tag" id="cost1">$1500</div>
+                </div>
+                <div class="picture">
+                    <img src="img/countries/jamie-street-zhiQORykuwQ-unsplash.jpg" alt="Destination 2">
+                    <div class="cost-tag" id="cost2">$1200</div>
+                </div>
+                <div class="picture">
+                    <img src="img/countries/su-san-lee-E_eWwM29wfU-unsplash.jpg" alt="Destination 3">
+                    <div class="cost-tag" id="cost3">$1800</div>
+                </div>
+                          </div>
+            <p>Adjust your options to find more tailored experiences!</p>
+        </div>
+
+        <div class="payment-modal" id="paymentModal">
+            <div class="payment-container">
+                <h2>Payment Details</h2>
+                <input type="text" placeholder="Card Number">
+                <input type="text" placeholder="Expiry Date (MM/YY)">
+                <input type="text" placeholder="CVV">
+                <button class="pay-button" onclick="processPayment()">Pay Now</button>
+                <button onclick="closePaymentModal()" style="margin-top: 10px;">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="containerCD">
+        <header>
+            <h1>About Us</h1>
+        </header>
+    
+        <div class="section">
+            <p> We help you explore the hidden gems of the World, whether you’re looking for adventure, relaxation, or cultural experiences.</p>
+        </div>
+    
+        <div class="section">
+            <h2>Our Mission</h2>
+            <p>We inspire travelers to connect with the world and make every journey memorable.</p>
+        </div>
+    
+        <div class="section">
+            <h2>Our Values</h2>
+            <ul>
+                <li><strong>Authenticity:</strong> Embracing unique cultures.</li>
+                <li><strong>Sustainability:</strong> Eco-friendly practices.</li>
+                <li><strong>Community:</strong> Building connections through travel.</li>
+                <li><strong>Adventure:</strong> Seeking new experiences.</li>
+            </ul>
+        </div>
+    
+        <div class="section">
+            <h2>Connect With Us</h2>
+            <p>Follow us for travel tips and offers!</p>
+            <div class="social-icons">
+                <a href="[Facebook Link]" target="_blank"><img src="https://via.placeholder.com/25?text=F" alt="Facebook"></a>
+                <a href="[Instagram Link]" target="_blank"><img src="https://via.placeholder.com/25?text=I" alt="Instagram"></a>
+                <a href="[Twitter Link]" target="_blank"><img src="https://via.placeholder.com/25?text=T" alt="Twitter"></a>
+                <a href="[Pinterest Link]" target="_blank"><img src="https://via.placeholder.com/25?text=P" alt="Pinterest"></a>
+            </div>
+        </div>
+    </div>
+
+
+
+    <script>
+        function calculateTotalPrice() {
+            const basePrices = {
+                'Qatar': 300,
+                'Russia': 350,
+                'France': 250,
+                'Dubai': 300,
+                'China': 400,
+                'India': 150,
+                'Japan': 400,
+                'Turkey': 220,
+                'leisure': 100,
+                'business': 200,
+                'adventure': 250,
+                'hotel': 200,
+                'hostel': 100,
+                'Airbnb': 150,
+                'sightseeing': 50,
+                'hiking': 150,
+                'cultural': 250,
+                'high': 350,
+                'medium': 200,
+                'low': 50,
+                'car': 200,
+                'train': 70,
+                'plane': 350,
+                '5': 200,
+                '4': 150,
+                '3': 100,
+                '1week': 250,
+                '2weeks': 400,
+                '3weeks': 750,
+                'summer': 150,
+                'winter': 200,
+                'spring': 120,
+                'autumn': 100,
+            };
+
+            let totalPrice = 0;
+            const selectedOptions = [
+                document.getElementById('country').value,
+                document.getElementById('travel-type').value,
+                document.getElementById('accommodation').value,
+                document.getElementById('activities').value,
+                document.getElementById('popularity').value,
+                document.getElementById('transportation').value,
+                document.getElementById('rating').value,
+                document.getElementById('duration').value,
+                document.getElementById('season').value,
+            ];
+
+            selectedOptions.forEach(option => {
+                if (option in basePrices && option !== 'none') {
+                    totalPrice += basePrices[option];
+                }
+            });
+
+            return totalPrice;
+        }
+
+        function updatePrices() {
+            const priceAdjustment = calculateTotalPrice();
+            const baseCosts = [1500, 1200, 1800]; 
+
+            document.getElementById('cost1').innerText = `$${baseCosts[0] + priceAdjustment}`;
+            document.getElementById('cost2').innerText = `$${baseCosts[1] + priceAdjustment}`;
+            document.getElementById('cost3').innerText = `$${baseCosts[2] + priceAdjustment}`;
+        }
+
+        function showSearchResults() {
+            updatePrices();  
+            const bookingPage = document.getElementById('bookingPage');
+            bookingPage.style.display = 'block';  
+        }
+
+        function showBookingPage() {
+            const bookingPage = document.getElementById('bookingPage');
+            const paymentModal = document.getElementById('paymentModal');
+
+            bookingPage.style.display = 'block';
+            paymentModal.style.display = 'flex';  
+            updatePrices();  
+        }
+
+        function processPayment() {
+            alert('Payment processed successfully!');  
+            closePaymentModal();
+        }
+
+        function closePaymentModal() {
+            const paymentModal = document.getElementById('paymentModal');
+            paymentModal.style.display = 'none';  
+        }
+    </script>
+
+    <script>
+        const searchContainer = document.getElementById('searchContainer');
+        
+       
+        searchContainer.addEventListener('click', function(event) {
+            event.stopPropagation();  
+            searchContainer.classList.toggle('expanded');
+        });
+
+         
+        document.addEventListener('click', function() {
+            searchContainer.classList.remove('expanded');
+        });
+    </script>
+</body>
+</html>
